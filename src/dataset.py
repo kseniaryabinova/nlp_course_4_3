@@ -18,7 +18,7 @@ class TextDataset(Dataset):
 
     def __getitem__(self, index: int):
         token_ids = self.vocab(self.df.iloc[index, 0])
-        x = self.sequence_start + token_ids
+        x = self.sequence_start + token_ids + self.sequence_end
         y = token_ids + self.sequence_end
         return x, y
 
@@ -56,6 +56,6 @@ def collate_fn(batch, pad_token_id):
     for x, y in batch:
         pad_size = max_len - len(x)
         padded_x.append(x + pad_token_id * pad_size)
-        padded_y.append(y + pad_token_id * pad_size)
+        padded_y.append(y + pad_token_id * (pad_size + 1))
 
     return {INPUTS: torch.tensor(padded_x), TARGETS: torch.tensor(padded_y)}

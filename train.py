@@ -64,4 +64,5 @@ if __name__ == '__main__':
         minimize_valid_metric=True,
         verbose=True,
         check=False,
+        amp=True,
     )

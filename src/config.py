@@ -18,7 +18,7 @@ class Config(BaseModel):
     seed: int = 25
 
     batch_size: int = 32
-    epochs: int = 20
+    epochs: int = 10
     lr: float = 0.001
 
     embedding_dim: int = 50
